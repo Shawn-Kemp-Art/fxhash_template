@@ -14,7 +14,7 @@ paper.setup('myCanvas');
 paper.activate();
 
 console.log(tokenData.hash)
-console.log($fx.iteration)
+console.log('#'+$fx.iteration)
 
 canvas.style.background = "white";
 
@@ -232,7 +232,7 @@ for (z = 0; z < stacks; z++) {
 
       var finalTime = new Date().getTime();
     var renderTime = (finalTime - initialTime)/1000
-    console.log ('this took : ' +  renderTime.toFixed(2) + ' seconds' );
+    console.log ('Render took : ' +  renderTime.toFixed(2) + ' seconds' );
 
 
         if (testingGo == 'true'){refreshit();}
