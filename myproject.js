@@ -1,5 +1,5 @@
 
-document.body.innerHTML = '<style>div{color: grey;text-align:center;position:absolute;margin:auto;top:0;right:0;bottom:0;left:0;width:500px;height:100px;}</style><body><div id="loading"><h1>Dot and Slide</h1><p>This could take a while, please give it at least 5 minutes to render.</p><br><h3>Press <strong>?</strong> for shortcut keys</h3></div></body>';
+document.body.innerHTML = '<style>div{color: grey;text-align:center;position:absolute;margin:auto;top:0;right:0;bottom:0;left:0;width:500px;height:100px;}</style><body><div id="loading"><h1>TEMPLATE</h1><p>This could take a while, please give it at least 5 minutes to render.</p><br><h1 class="spin">⏳</h1><br><h3>Press <strong>?</strong> for shortcut keys</h3><br><p><small>Output contains an embedded blueprint for creating an IRL wall sculpture</small></p></div></body>';
 paper.install(window);
 window.onload = function() {
 
