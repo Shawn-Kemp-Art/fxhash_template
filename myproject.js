@@ -242,7 +242,7 @@ for (z = 0; z < stacks; z++) {
         await new Promise(resolve => setTimeout(resolve, 5000)); // 3 sec
         canvas.toBlob(function(blob) {saveAs(blob, tokenData.hash+' - '+renderTime.toFixed(0)+'secs.png');});
         await new Promise(resolve => setTimeout(resolve, 5000)); // 3 sec
-        window.open('file:///Users/shawnkemp/dev/dotandslide/DotandSlide/index.html?testing=true', '_blank');
+        window.open('./index.html?testing=true', '_blank');
         }
 
 //vvvvvvvvvvvvvvv PROJECT FUNCTIONS vvvvvvvvvvvvvvv 
