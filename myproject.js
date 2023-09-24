@@ -219,9 +219,10 @@ for (z = 0; z < stacks; z++) {
     // Build the features and trigger an fxhash preview
     var features = {};
     features.Size =  ~~(wide/100/ratio)+" x "+~~(high/100/ratio)+" inches";
-    //features.Orientation = orientation;
-    //features.Dahlias = numberofcircles;
-    //features.Background = backgrounds;
+    features.Width = ~~(wide/100/ratio);
+    features.Height = ~~(high/100/ratio);
+    features.Depth = stacks*0.0625;
+    features.Layers = stacks;
     for (l=stacks;l>0;l--){
     var key = "layer: "+(stacks-l+1)
     features[key] = colors[l-1].Name
@@ -230,10 +231,10 @@ for (z = 0; z < stacks; z++) {
     $fx.features(features);
     //$fx.preview();
 
-    //Add a finished creating preview selector
-    var iDiv = document.createElement('div');
-    iDiv.id = 'render';
-    document.body.appendChild(iDiv);
+    
+    upspirestudio(features); //#render and send features to upspire.studio
+
+
 
       var finalTime = new Date().getTime();
     var renderTime = (finalTime - initialTime)/1000
