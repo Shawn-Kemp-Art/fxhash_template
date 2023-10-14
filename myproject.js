@@ -172,12 +172,9 @@ linecolor={"Hex":"#4C4638", "Name":"Mocha"};
 
 
 sheet = []; //This will hold each layer
-var punchX =[];
-
 
 var px=0;var py=0;var pz=0;var prange=.1; 
 
-var center = new Point(wide/2,high/2)
 
 
 //---- Draw the Layers
@@ -186,19 +183,23 @@ var center = new Point(wide/2,high/2)
 for (z = 0; z < stacks; z++) {
     pz=z*prange;
     drawFrame(z); // Draw the initial frame
-    if(z==0){solid(z)}
+    //if(z==0){solid(z)}
 
          //-----Draw each layer
         if(z<stacks-1 && z!=0 ){
             if (z==stacks-2){oset = minOffset}else{oset = ~~(minOffset*(stacks-z-1))}
-            somelines(z); 
+            var li = R.random_int(12, 12);
+            for (l=0;l<li;l++){
+                somelines(z); 
+            }
+            
 
         }
         
     frameIt(z);// finish the layer with a final frame cleanup 
 
     cutMarks(z);
-    hanger(z);// add cut marks and hanger holes
+    hanger(z);// add hanger holes
     if (z == stacks-1) {signature(z);}// sign the top layer
     sheet[z].scale(2.3);
     sheet[z].position = new Point(paper.view.viewSize.width/2, paper.view.viewSize.height/2);
@@ -255,9 +256,9 @@ for (z = 0; z < stacks; z++) {
  
 function somelines(z){
         p = []
-        y = R.random_int(framewidth, high-framewidth);
+        y = R.random_int(0, high);
         p[0]=new Point(0,y)
-        y2 = R.random_int(framewidth, high-framewidth);
+        y2 = R.random_int(0, high);
         p[1]=new Point(wide,y2)
         lines = new Path.Line (p[0],p[1]); 
         mesh = PaperOffset.offsetStroke(lines, minOffset,{ cap: 'butt' });
