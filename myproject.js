@@ -371,14 +371,20 @@ function hanger (z){
     if (z < stacks-2 && scale>0){
         var r = 30*ratio;
         if (z<3){r = 19*ratio}
-        var layerEtch = new Path.Circle(new Point(wide/2,framewidth/2),r)
+        //var layerEtch = new Path.Circle(new Point(wide/2,framewidth/2),r)
+        //cut(z,layerEtch)
+
+        var layerEtch = new Path.Circle(new Point(framewidth/2,framewidth),r)
         cut(z,layerEtch)
+        var layerEtch = new Path.Circle(new Point(wide-framewidth/2,framewidth),r)
+        cut(z,layerEtch)
+
         //var layerEtch = new Path.Circle(new Point(wide/2,high-framewidth/2),r)
         //cut(z,layerEtch)
-        if (scale>0){var layerEtch = new Path.Circle(new Point(framewidth/2,high/2),r)
-        cut(z,layerEtch)
-        var layerEtch = new Path.Circle(new Point(wide-framewidth/2,high/2),r)
-        cut(z,layerEtch)}
+        //if (scale>0){var layerEtch = new Path.Circle(new Point(framewidth/2,high/2),r)
+        //cut(z,layerEtch)
+        //var layerEtch = new Path.Circle(new Point(wide-framewidth/2,high/2),r)
+        //cut(z,layerEtch)}
     }
 }
 
