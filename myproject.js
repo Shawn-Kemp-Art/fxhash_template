@@ -290,7 +290,7 @@ function floatingframe(){
         framegap.scale(2.2);
         framegap.position = new Point(paper.view.viewSize.width/2, paper.view.viewSize.height/2);
         framegap.style = {fillColor: '#1A1A1A', strokeColor: "#1A1A1A", strokeWidth: 1*ratio};
-    }else {framegap.removeChildren()}
+    } else {framegap.removeChildren()}
 
     if (woodframe.isEmpty()){
         var outsideframe = new Path.Rectangle(new Point(0, 0),new Size(wide+54, high+54), framradius)
@@ -300,9 +300,8 @@ function floatingframe(){
         woodframe.scale(2.2);
         woodframe.position = new Point(paper.view.viewSize.width/2, paper.view.viewSize.height/2);
         var framegroup = new Group(woodframe);
-        woodframe.style = {fillColor: '#773f1a', strokeColor: "#773f1a", strokeWidth: 1*ratio,shadowColor: new Color(0,0,0,[0.5]),shadowBlur: 20,shadowOffset: new Point(10*2.2, 10*2.2)};
+        woodframe.style = {fillColor: '#60513D', strokeColor: "#60513D", strokeWidth: 1*ratio,shadowColor: new Color(0,0,0,[0.5]),shadowBlur: 20,shadowOffset: new Point(10*2.2, 10*2.2)};
     } else {woodframe.removeChildren()}
-
 }
 
 function rangeInt(range,x,y,z){
