@@ -201,7 +201,7 @@ for (z = 0; z < stacks; z++) {
     cutMarks(z);
     hanger(z);// add hanger holes
     if (z == stacks-1) {signature(z);}// sign the top layer
-    sheet[z].scale(2.3);
+    sheet[z].scale(2.2);
     sheet[z].position = new Point(paper.view.viewSize.width/2, paper.view.viewSize.height/2);
    
     var group = new Group(sheet[z]);
@@ -235,7 +235,7 @@ for (z = 0; z < stacks; z++) {
     
     upspirestudio(features); //#render and send features to upspire.studio
 
-
+    
 
       var finalTime = new Date().getTime();
     var renderTime = (finalTime - initialTime)/1000
@@ -281,7 +281,23 @@ function somelines(z){
 
 //--------- Helper functions ----------------------- 
 
-
+function floatingframe(){
+    var outsideframe = new Path.Rectangle(new Point(0, 0),new Size(wide+24, high+24), framradius)
+    var insideframe = new Path.Rectangle(new Point(12, 12),new Size(wide, high)) 
+    var framegap = outsideframe.subtract(insideframe);
+    outsideframe.remove();insideframe.remove();
+    framegap.scale(2.2);
+    framegap.position = new Point(paper.view.viewSize.width/2, paper.view.viewSize.height/2);
+    framegap.style = {fillColor: '#1A1A1A', strokeColor: "#1A1A1A", strokeWidth: 1*ratio};
+    var outsideframe = new Path.Rectangle(new Point(0, 0),new Size(wide+54, high+54), framradius)
+    var insideframe = new Path.Rectangle(new Point(21, 21),new Size(wide+12, high+12)) 
+    var woodframe = outsideframe.subtract(insideframe);
+    outsideframe.remove();insideframe.remove();
+    woodframe.scale(2.2);
+    woodframe.position = new Point(paper.view.viewSize.width/2, paper.view.viewSize.height/2);
+    var framegroup = new Group(woodframe);
+    woodframe.style = {fillColor: '#773f1a', strokeColor: "#773f1a", strokeWidth: 1*ratio,shadowColor: new Color(0,0,0,[0.5]),shadowBlur: 20,shadowOffset: new Point(10*2.2, 10*2.2)};
+}
 
 function rangeInt(range,x,y,z){
     var v = ~~(range-(noise.get(x,y,z)*range*2));
@@ -400,6 +416,9 @@ view.onDoubleClick = function(event) {
 };
 
 document.addEventListener('keypress', (event) => {
+
+       //Draw a frame
+       if(event.key == "f") { floatingframe();}
 
        //Save as SVG 
        if(event.key == "v") {
