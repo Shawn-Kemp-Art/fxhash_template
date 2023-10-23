@@ -232,7 +232,7 @@ for (z = 0; z < stacks; z++) {
     $fx.features(features);
     //$fx.preview();
 
-    floatingframe()
+    floatingframe();
     upspirestudio(features); //#render and send features to upspire.studio
 
     
@@ -441,7 +441,7 @@ document.addEventListener('keypress', (event) => {
 
        //Format for Lightburn
        if(event.key == "b") {
-            floatingframe()
+            floatingframe();
             for (z=0;z<stacks;z++){
                 sheet[z].style = {fillColor: null,strokeWidth: .1,strokeColor: lightburn[stacks-z-1].Hex,shadowColor: null,shadowBlur: null,shadowOffset: null}
                 sheet[z].selected = true;}
