@@ -121,7 +121,7 @@ paper.view.viewSize.height = 2400;
 
 
 var colors = []; var palette = []; 
-var petalspiky = R.random_int(5, 15);
+var woodframe = new Path();var framegap = new Path();
 
 
 numofcolors = R.random_int(2, stacks);; //Sets the number of colors to pick for the pallete
@@ -232,7 +232,7 @@ for (z = 0; z < stacks; z++) {
     $fx.features(features);
     //$fx.preview();
 
-    
+    floatingframe()
     upspirestudio(features); //#render and send features to upspire.studio
 
     
@@ -282,21 +282,27 @@ function somelines(z){
 //--------- Helper functions ----------------------- 
 
 function floatingframe(){
-    var outsideframe = new Path.Rectangle(new Point(0, 0),new Size(wide+24, high+24), framradius)
-    var insideframe = new Path.Rectangle(new Point(12, 12),new Size(wide, high)) 
-    var framegap = outsideframe.subtract(insideframe);
-    outsideframe.remove();insideframe.remove();
-    framegap.scale(2.2);
-    framegap.position = new Point(paper.view.viewSize.width/2, paper.view.viewSize.height/2);
-    framegap.style = {fillColor: '#1A1A1A', strokeColor: "#1A1A1A", strokeWidth: 1*ratio};
-    var outsideframe = new Path.Rectangle(new Point(0, 0),new Size(wide+54, high+54), framradius)
-    var insideframe = new Path.Rectangle(new Point(21, 21),new Size(wide+12, high+12)) 
-    var woodframe = outsideframe.subtract(insideframe);
-    outsideframe.remove();insideframe.remove();
-    woodframe.scale(2.2);
-    woodframe.position = new Point(paper.view.viewSize.width/2, paper.view.viewSize.height/2);
-    var framegroup = new Group(woodframe);
-    woodframe.style = {fillColor: '#773f1a', strokeColor: "#773f1a", strokeWidth: 1*ratio,shadowColor: new Color(0,0,0,[0.5]),shadowBlur: 20,shadowOffset: new Point(10*2.2, 10*2.2)};
+   if (framegap.isEmpty()){
+        var outsideframe = new Path.Rectangle(new Point(0, 0),new Size(wide+24, high+24), framradius)
+        var insideframe = new Path.Rectangle(new Point(12, 12),new Size(wide, high)) 
+        framegap = outsideframe.subtract(insideframe);
+        outsideframe.remove();insideframe.remove();
+        framegap.scale(2.2);
+        framegap.position = new Point(paper.view.viewSize.width/2, paper.view.viewSize.height/2);
+        framegap.style = {fillColor: '#1A1A1A', strokeColor: "#1A1A1A", strokeWidth: 1*ratio};
+    }else {framegap.removeChildren()}
+
+    if (woodframe.isEmpty()){
+        var outsideframe = new Path.Rectangle(new Point(0, 0),new Size(wide+54, high+54), framradius)
+        var insideframe = new Path.Rectangle(new Point(21, 21),new Size(wide+12, high+12)) 
+        woodframe = outsideframe.subtract(insideframe);
+        outsideframe.remove();insideframe.remove();
+        woodframe.scale(2.2);
+        woodframe.position = new Point(paper.view.viewSize.width/2, paper.view.viewSize.height/2);
+        var framegroup = new Group(woodframe);
+        woodframe.style = {fillColor: '#773f1a', strokeColor: "#773f1a", strokeWidth: 1*ratio,shadowColor: new Color(0,0,0,[0.5]),shadowBlur: 20,shadowOffset: new Point(10*2.2, 10*2.2)};
+    } else {woodframe.removeChildren()}
+
 }
 
 function rangeInt(range,x,y,z){
@@ -387,20 +393,20 @@ function hanger (z){
     if (z < stacks-2 && scale>0){
         var r = 30*ratio;
         if (z<3){r = 19*ratio}
-        //var layerEtch = new Path.Circle(new Point(wide/2,framewidth/2),r)
-        //cut(z,layerEtch)
+        var layerEtch = new Path.Circle(new Point(wide/2,framewidth/2),r)
+        cut(z,layerEtch)
 
-        var layerEtch = new Path.Circle(new Point(framewidth/2,framewidth),r)
-        cut(z,layerEtch)
-        var layerEtch = new Path.Circle(new Point(wide-framewidth/2,framewidth),r)
-        cut(z,layerEtch)
+        //var layerEtch = new Path.Circle(new Point(framewidth/2,framewidth),r)
+        //cut(z,layerEtch)
+        //var layerEtch = new Path.Circle(new Point(wide-framewidth/2,framewidth),r)
+        //cut(z,layerEtch)
 
         //var layerEtch = new Path.Circle(new Point(wide/2,high-framewidth/2),r)
         //cut(z,layerEtch)
-        //if (scale>0){var layerEtch = new Path.Circle(new Point(framewidth/2,high/2),r)
-        //cut(z,layerEtch)
-        //var layerEtch = new Path.Circle(new Point(wide-framewidth/2,high/2),r)
-        //cut(z,layerEtch)}
+        if (scale>0){var layerEtch = new Path.Circle(new Point(framewidth/2,high/2),r)
+        cut(z,layerEtch)
+        var layerEtch = new Path.Circle(new Point(wide-framewidth/2,high/2),r)
+        cut(z,layerEtch)}
     }
 }
 
@@ -436,6 +442,7 @@ document.addEventListener('keypress', (event) => {
 
        //Format for Lightburn
        if(event.key == "b") {
+            floatingframe()
             for (z=0;z<stacks;z++){
                 sheet[z].style = {fillColor: null,strokeWidth: .1,strokeColor: lightburn[stacks-z-1].Hex,shadowColor: null,shadowBlur: null,shadowOffset: null}
                 sheet[z].selected = true;}
