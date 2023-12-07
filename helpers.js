@@ -38,6 +38,6 @@ function setquery(p,v){
         xhr.open("POST", url);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function () {if (xhr.readyState === 4) {console.log(xhr.status);console.log(xhr.responseText);}};
-        var data64 = '{"attributes":"'+attr+'","url":"'+genurl+'","hash":"'+fxhash+'"}';
+        var data64 = '{"attributes":"'+attr+'","url":"'+genurl+'","hash":"'+$fx.hash+'"}';
         xhr.send(data64);   
     };

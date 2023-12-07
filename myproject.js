@@ -5,7 +5,7 @@ window.onload = function() {
 
 document.body.innerHTML = '<style>body {margin: 0px;text-align: center;}</style><canvas resize="true" style="display:block;width:100%;" id="myCanvas"></canvas>';
 
-setquery("fxhash",fxhash);
+setquery("fxhash",$fx.hash);
 var initialTime = new Date().getTime();
 
 var canvas = document.getElementById("myCanvas");
@@ -13,7 +13,7 @@ var canvas = document.getElementById("myCanvas");
 paper.setup('myCanvas');
 paper.activate();
 
-console.log(tokenData.hash)
+console.log($fx.hash)
 console.log('#'+$fx.iteration)
 
 canvas.style.background = "white";
@@ -122,7 +122,9 @@ paper.view.viewSize.height = 2400;
 
 var colors = []; var palette = []; 
 var woodframe = new Path();var framegap = new Path();
-
+var fColor = frameColors[R.random_int(0, frameColors.length-1)];
+var frameColor = fColor.Hex;
+console.log("Frame Color: "+fColor.Name);
 
 numofcolors = R.random_int(2, stacks);; //Sets the number of colors to pick for the pallete
 //numofcolors = $fx.getParam("number_colors");
@@ -301,7 +303,7 @@ function floatingframe(){
         woodframe.scale(2.2);
         woodframe.position = new Point(paper.view.viewSize.width/2, paper.view.viewSize.height/2);
         var framegroup = new Group(woodframe);
-        woodframe.style = {fillColor: '#60513D', strokeColor: "#60513D", strokeWidth: 1*ratio,shadowColor: new Color(0,0,0,[0.5]),shadowBlur: 20,shadowOffset: new Point(10*2.2, 10*2.2)};
+        woodframe.style = {fillColor: frameColor, strokeColor: "#60513D", strokeWidth: 2*ratio,shadowColor: new Color(0,0,0,[0.5]),shadowBlur: 20,shadowOffset: new Point(10*2.2, 10*2.2)};
     } else {woodframe.removeChildren()} 
 }
 
