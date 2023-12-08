@@ -14,7 +14,7 @@ var canvas = document.getElementById("myCanvas");
 paper.setup('myCanvas');
 paper.activate();
 
-console.log($fx.hash)
+console.log('hash: '+$fx.hash)
 console.log('#'+$fx.iteration)
 
 canvas.style.background = "white";
