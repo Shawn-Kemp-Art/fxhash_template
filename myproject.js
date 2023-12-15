@@ -429,7 +429,7 @@ document.addEventListener('keypress', (event) => {
 
        //Save as SVG 
        if(event.key == "v") {
-            fileName = tokenData.hash;
+            fileName = $fx.hash;
             var url = "data:image/svg+xml;utf8," + encodeURIComponent(paper.project.exportSVG({asString:true}));
             var key = [];for (l=stacks;l>0;l--){key[stacks-l] = colors[l-1].Name;}; 
             var svg1 = "<!--"+key+"-->" + paper.project.exportSVG({asString:true})
@@ -491,7 +491,7 @@ document.addEventListener('keypress', (event) => {
         
         //Save as PNG
         if(event.key == "p") {
-            canvas.toBlob(function(blob) {saveAs(blob, tokenData.hash+'.png');});
+            canvas.toBlob(function(blob) {saveAs(blob, $fx.hash+'.png');});
             }
 
         //Export colors as txt
@@ -502,7 +502,7 @@ document.addEventListener('keypress', (event) => {
             }; 
             console.log(key.reverse())
             var content = JSON.stringify(key.reverse())
-            var filename = tokenData.hash + ".txt";
+            var filename = $fx.hash + ".txt";
             var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
             saveAs(blob, filename);
             }
